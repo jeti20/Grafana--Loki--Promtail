@@ -1,4 +1,4 @@
-![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/2d58dd86-da60-4a08-a1ca-d90848d51a11)![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/a4f8dbd0-8522-4bc5-a376-d5322e816342)# Loki---Promtail---Grafana
+# Loki---Promtail---Grafana
 
 **Technologies:** AWS, Loki, Promtail, Grafana 
 
@@ -56,8 +56,8 @@ After all operetion this is how it should look liek ater ls -l
 >br/>Node1 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/887fa4f2-e739-4dbc-bbd4-3b02631a6ed4)
 
->br/>Node2
->![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/83bfeedb-abe0-45bf-b167-45979488aedd)
+<br/>Node2
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/83bfeedb-abe0-45bf-b167-45979488aedd)
 
 Go to node one and edit config file for promtail, change localhost to node ip 
 
