@@ -28,7 +28,8 @@ You can visit http://YorIP:3100/metrics and you should see logs from this servic
 
 ## **Promtail Node1 Node2** 
 
- Go again to release page  https://github.com/grafana/loki/releases/ find iteresting  u binary file with promtail**
+To make Promail work we have to downoland binary file wihich runs protmail and the cofiguration which provides informations under what IP Loki Server is and there send data. 
+<br/>First downoland the binary file Go again to release page https://github.com/grafana/loki/releases/ find iteresting  u binary file with promtail**
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/b65fe713-e034-4894-9b78-80f83f803d41)
 
@@ -39,8 +40,10 @@ sudo apt-get install unzip
 wget https://github.com/grafana/loki/releases/download/v2.9.6/promtail-linux-amd64.zip
 unzip promtail-linux-amd64.zip
 ```
-(Plik promtail-linux-amd64 to binarny plik wykonywalny programu Promtail zoptymalizowany dla systemów operacyjnych Linux z architekturą AMD64. Po uruchomieniu, Promtail rozpoczyna proces zbierania logów z określonych lokalizacji, ich przetwarzania zgodnie z konfiguracją oraz wysyłania ich do serwera Loki w celu dalszej analizy i przechowywania.)
-Also from wget previous link https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml Use this command to downoland promtail config file
+Iformation
+<br/>(Plik promtail-linux-amd64 to binarny plik wykonywalny programu Promtail zoptymalizowany dla systemów operacyjnych Linux z architekturą AMD64. Po uruchomieniu, Promtail rozpoczyna proces zbierania logów z określonych lokalizacji, ich przetwarzania zgodnie z konfiguracją oraz wysyłania ich do serwera Loki w celu dalszej analizy i przechowywania.)
+
+Now lets downoland the configure file from instruction on Grafana website: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/d02b2c1c-901f-422d-a0da-33f616e6297b)
 
@@ -48,139 +51,34 @@ Also from wget previous link https://raw.githubusercontent.com/grafana/loki/main
 wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml
 ```
 
-After all operetion this is how it should look liek ater ls -l
+Now on each node you should have config file and unpacked binary file
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/022972f4-8c6b-434f-9e0d-5b7ce49f645a)
 
 
-Go to node one and edit config file for promtail, change localhost to node ip 
+Now on each node edit config file. Past there the IP of Servier with Loki.
 
 ```
-vim promtail-local-config.yaml and paste there IP server with Loki. In both nodes the same IP from server with Loki
+vim promtail-local-config.yaml
 ```
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/88b913cd-580c-4181-b9ab-8304ba8e29bb)
 
-loki-local-config.yaml push everything from folder /var/log thats ends with "log"
+Information
+<br/>loki-local-config.yaml push everything from folder /var/log thats ends with "log"
 
-go to node 2 and do the same thingvim 
-
-
-
-
-
-
-.
-.
-
-..
-
-.
-.
-.
-.
-.
-
-..
-
-..
-
-.
-.
-.
-.
-.
-.
-.
-
-.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Remember that the server with Loki should be running the Loki binary file (last command from Loki section in Loki server).
+<br/>To run protmile on each server run this command. This will run the binary file with configuration from promtail-local-config.yaml
 ```
-cd /usr/local/bin
+./promtail-linux-amd64 -config.file=promtail-local-config.yaml
 ```
 
-downoland Loki, install unzip tool, unzip pacakge, make sure all file are executeable, create new file config-loki.yml
-```
-curl -O -L "https://github.com/grafana/loki/releases/download/v2.4.1/loki-linux-amd64.zip"
-apt install unzip
-unzip "loki-linux-amd64.zip"
-chmod a+x "loki-linux-amd64"
-sudo nano config-loki.yml
-```
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/b738843b-b0be-4ac8-87a7-705d06785e24)
 
-past it into config-loki.yml. Chceck if there are any changes since last updaet https://raw.githubusercontent.com/grafana/loki/master/cmd/loki/loki-local-config.yaml
-```
-auth_enabled: false
 
-server:
-  http_listen_port: 3100
-  grpc_listen_port: 9096
+**Grafana Server**
+<br/>Check this repository: 
 
-common:
-  path_prefix: /tmp/loki
-  storage:
-    filesystem:
-      chunks_directory: /tmp/loki/chunks
-      rules_directory: /tmp/loki/rules
-  replication_factor: 1
-  ring:
-    kvstore:
-      store: inmemory
 
-schema_config:
-  configs:
-    - from: 2020-10-24
-      store: boltdb-shipper
-      object_store: filesystem
-      schema: v11
-      index:
-        prefix: index_
-        period: 24h
 
-ruler:
-  alertmanager_url: http://localhost:9093
-```
-
-Create sysetm user to run this 24/7 in background as a user
-```
-sudo useradd --system loki
-```
-Create a file called loki.service
-```
-sudo nano /etc/systemd/system/loki.service
-```
-Paste it into this file 
-```
-[Unit]
-Description=Loki service. It will allows to run it as a serviec in background base on loki-config.yaml. It is uising user Loki which we created before
-After=network.target
-
-[Service]
-Type=simple
-User=loki
-ExecStart=/usr/local/bin/loki-linux-amd64 -config.file /usr/local/bin/config-loki.yml
-
-[Install]
-WantedBy=multi-user.target
-```
 
