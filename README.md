@@ -11,12 +11,9 @@ Server as Node1
 Server as Node2
 Server for Grafana
 
-Loki Server
-Check ths istalation steps: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links**
+**Loki Server**
+Check ths istalation steps: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links
 
-Go to
-<br/>![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/63f7c54a-14cc-4a65-8a4b-ade2fbaca4a3)
-<br/>![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/123570e2-bfec-4e13-8716-b01321550905)
 
 ```
 sudo apt-get install unzip
@@ -29,19 +26,20 @@ wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-con
 
 You can visit http://YorIP:3100/metrics and you should see logs from this service
 
-## **Promtail**
+## **Promtail Node1 Node2** 
 
-**4. Go again to release page  https://github.com/grafana/loki/releases/ find interestign u binary file with promtail**
+ Go again to release page  https://github.com/grafana/loki/releases/ find iteresting  u binary file with promtail**
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/b65fe713-e034-4894-9b78-80f83f803d41)
 
 copy link to this file and use wget to downoland this on each node 
 ```
+sudo apt update
 sudo apt-get install unzip
 wget https://github.com/grafana/loki/releases/download/v2.9.6/promtail-linux-amd64.zip
 unzip promtail-linux-amd64.zip
 ```
-
+(Plik promtail-linux-amd64 to binarny plik wykonywalny programu Promtail zoptymalizowany dla systemów operacyjnych Linux z architekturą AMD64. Po uruchomieniu, Promtail rozpoczyna proces zbierania logów z określonych lokalizacji, ich przetwarzania zgodnie z konfiguracją oraz wysyłania ich do serwera Loki w celu dalszej analizy i przechowywania.)
 Also from wget previous link https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml Use this command to downoland promtail config file
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/d02b2c1c-901f-422d-a0da-33f616e6297b)
@@ -51,16 +49,14 @@ wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/pr
 ```
 
 After all operetion this is how it should look liek ater ls -l
->br/>Node1 
-![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/887fa4f2-e739-4dbc-bbd4-3b02631a6ed4)
 
-<br/>Node2
-![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/83bfeedb-abe0-45bf-b167-45979488aedd)
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/022972f4-8c6b-434f-9e0d-5b7ce49f645a)
+
 
 Go to node one and edit config file for promtail, change localhost to node ip 
 
 ```
-vim promtail-local-config.yaml
+vim promtail-local-config.yaml and paste there IP server with Loki. In both nodes the same IP from server with Loki
 ```
 
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/88b913cd-580c-4181-b9ab-8304ba8e29bb)
