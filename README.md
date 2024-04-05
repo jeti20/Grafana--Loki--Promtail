@@ -45,7 +45,8 @@ Iformation
 
 Now lets downoland the configure file from instruction on Grafana website: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links
 
-![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/d02b2c1c-901f-422d-a0da-33f616e6297b)
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/70e1d09e-82f1-4a28-b89f-7dfaedf11a88)
+
 
 ```
 wget https://raw.githubusercontent.com/grafana/loki/main/clients/cmd/promtail/promtail-local-config.yaml
