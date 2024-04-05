@@ -106,3 +106,13 @@ By chaning this symbol you search in multiple files
 ![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/c5a5c025-4bee-46ef-a942-20f2cda21a4d)
 
 You can switch to "Code" and type words i query.
+
+
+If you want to add file with logs to Loki which is not in the folder /var/logs defined in the promtail-local-config.yaml. You have to edit the promtail-local-config.yaml. Go into both nodes, the best option is to open them in split mode terminal for example in MobaXTerm. 
+```
+nano promtail-local-config.yaml
+```
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/75af20cc-7da7-4c16-ae62-ab1d422b8b3e)
+
+You should be able to see new position in dropdown menu in grafana in jobs if you pointed valid log file
+
