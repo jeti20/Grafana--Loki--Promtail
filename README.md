@@ -4,6 +4,10 @@
 
 **What Loki is**: https://github.com/grafana/loki   https://grafana.com/docs/loki/latest/get-started/overview/
 
+**Architecture**:
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/09eccc76-fd6a-44c8-a0cc-33fb606a0d1d)
+
 
 **1. Create 4 servers**
 Server for Loki
