@@ -77,8 +77,32 @@ Remember that the server with Loki should be running the Loki binary file (last 
 
 
 **Grafana Server**
-<br/>Check this repository: 
+<br/>Check this repository: https://github.com/jeti20/Grafana-AWS/blob/main/README.md
 
+In grafana add Loki as DataSource, type Loki's server IP address. Press "Save & Test" and now you should see "Data source successfully connected"
 
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/f285f9af-7e1d-4676-a112-cd171e3c210b)
 
+Go to explore and try to create dashboard. This is how LogQL looks like
 
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/e4d26c28-8133-4a41-a0fd-6b45da0902bf)
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/cfe35001-f387-4915-87a9-cdb832097d0e)
+
+In LogQL you can search for logs with specific word. Just type words between "''" in query 
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/dc080629-1d6c-485d-bc12-880892d9c6ec)
+
+You can check the source of logs
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/87ef101c-5bdf-48ad-bfdb-c59903d55a59)
+
+See all logs from the one one specific log
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/6777cd9c-df6e-49e2-aca8-f408ffce147e)
+
+By chaning this symbol you search in multiple files
+
+![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/c5a5c025-4bee-46ef-a942-20f2cda21a4d)
+
+You can switch to "Code" and type words i query.
