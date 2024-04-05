@@ -4,29 +4,27 @@
 
 **What Loki is**: https://github.com/grafana/loki   https://grafana.com/docs/loki/latest/get-started/overview/
 
-**Architecture:**
 
+**1. Create 4 servers**
+Server for Loki
+Server as Node1
+Server as Node2
+Server for Grafana
 
-**Requirmets:** 
-- EC2 Ubuntu
+Loki Server
+Check ths istalation steps: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links**
 
-
-## **Loki**
-**1. Create Grafana servers with open ports 3100, 3000, 22 and 9096. Go to https://github.com/grafana/loki and**
-
-**2. Check ths istalation steps: https://grafana.com/docs/loki/latest/setup/install/local/?pg=oss-loki&plcmt=quick-links**
-
-**3. Go to**
+Go to
 <br/>![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/63f7c54a-14cc-4a65-8a4b-ade2fbaca4a3)
 <br/>![image](https://github.com/jeti20/Loki---Promtail---Grafana/assets/61649661/123570e2-bfec-4e13-8716-b01321550905)
 
 ```
 sudo apt-get install unzip
 curl -O -L "https://github.com/grafana/loki/releases/download/v2.9.4/loki-linux-amd64.zip"
-# extract the binary
 unzip "loki-linux-amd64.zip"
-# make sure it is executable
-$ chmod a+x "loki-linux-amd64"
+chmod a+x "loki-linux-amd64"
+wget https://raw.githubusercontent.com/grafana/loki/main/cmd/loki/loki-local-config.yaml
+./loki-linux-amd64 -config.file=loki-local-config.yaml - służy do uruchomienia serwera Loki na systemach operacyjnych Linux z architekturą AMD64, korzystając z konfiguracji zawartej w pliku loki-local-config.yaml.
 ```
 
 You can visit http://YorIP:3100/metrics and you should see logs from this service
